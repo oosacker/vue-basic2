@@ -27,6 +27,7 @@ export default {
 
 #nav {
   padding: 30px;
+  background-color: honeydew;
 }
 
 #nav a {

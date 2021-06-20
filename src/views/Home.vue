@@ -2,9 +2,9 @@
   <div class="container">
     <div class="form">
       <form class="form-container" @submit.prevent="submitForm()">
-        <input type="text" v-model="name" class="name form-control" placeholder="Name" />
-        <input type="email" v-model="email" class="email form-control" placeholder="Email" />
-        <textarea type="text" v-model="body" class="body form-control" placeholder="Body" />
+        <input required type="text" v-model="name" class="name form-control" placeholder="Name" />
+        <input required type="email" v-model="email" class="email form-control" placeholder="Email" />
+        <textarea required type="text" rows=10 v-model="body" class="body form-control" placeholder="Body" />
         <input type="submit" class="button submit-btn form-control" />
       </form>
       <button @click="fetchBtnClick()" class="button form-control">Fetch</button>
@@ -47,6 +47,12 @@
       },
       submitForm() {
         console.log('submit!!!')  
+
+        if (this.name === '' || this.email === '' || this.body === '') {
+          alert('Please fill out the form completely')
+          return
+        }
+
         const newComment = {  
           name: this.name,
           email: this.email,
@@ -68,47 +74,74 @@
 </script>
 
 <style>
+  .container {
+    /* margin: 50px 0 50px 0; */
+  }
+
+  .comment {
+    background-color: honeydew;
+  }
+
   .home {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
   }
+
   .comment {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     flex-direction: column;
     padding: 25px;
     margin: 10px;
     border-radius: 5px;
     width: 300px;
   }
+
+  .comment:hover {
+    box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+    opacity: 0.9;
+  }
+
+  .form {
+    margin: 50px 0 50px 0;
+  }
+
   .form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
   .form-control {
     /* display: block; */
     margin-bottom: 10px;
     padding: 5px;
-    width: 500px;
+    width: 400px;
     border-radius: 5px;
+    border: none;
+    background-color: rgb(219, 231, 231);;
   }
+
   .button {
     padding: 10px;
     color:black;
-    background-color: rgb(174, 196, 197);
+    background-color: rgba(174, 196, 197, 100%);
     width: 200px;
     border-radius: 20px;
     margin: 5px;
+    border: none;
   }
-  .btn:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  .button:hover {
+    box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+    opacity: 0.8;
   }
+
   .submit-btn {
     width: 300px;
     background-color: burlywood;

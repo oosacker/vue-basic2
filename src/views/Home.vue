@@ -5,9 +5,12 @@
         <input type="text" v-model="name" class="name form-control" placeholder="Name" />
         <input type="email" v-model="email" class="email form-control" placeholder="Email" />
         <textarea type="text" v-model="body" class="body form-control" placeholder="Body" />
-        <input type="submit" class="button form-control" />
+        <input type="submit" class="button submit-btn form-control" />
       </form>
+      <button @click="fetchBtnClick()" class="button form-control">Fetch</button>
+      <button @click="resetBtnClick()" class="button form-control">Reset</button>
     </div>
+    
     
     <div class="home">
       <div v-for="comment in allComments" :key="comment.id" class="comment">
@@ -33,8 +36,13 @@
     },
     methods: {
       //...mapActions(["fetchComments"]),
-      buttonClick() {
-        console.log('button!!!!')
+      fetchBtnClick() {
+        console.log('fetch!!!!')
+        this.$store.dispatch('fetchAllComments')
+      },
+      resetBtnClick() {
+        console.log('reset!!!!')
+        this.$store.dispatch('resetComments')
       },
       submitForm() {
         console.log('submit!!!')
@@ -59,11 +67,6 @@
 </script>
 
 <style>
-  .button {
-    padding: 10px;
-    color:black;
-    background-color: rgb(174, 196, 197);
-  }
   .home {
     display: flex;
     justify-content: center;
@@ -95,8 +98,20 @@
     border-radius: 5px;
   }
   .button {
+    padding: 10px;
+    color:black;
+    background-color: rgb(174, 196, 197);
     width: 200px;
     border-radius: 20px;
+    margin: 5px;
   }
-
+  .btn:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  .submit-btn {
+    width: 300px;
+    background-color: burlywood;
+    font-weight: 600;
+    /* font-size: 1rem; */
+  }
 </style>

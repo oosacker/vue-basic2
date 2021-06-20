@@ -9,6 +9,10 @@ const actions = {
   addAComment({ commit }, newComment) {
     console.log('add')
     commit('addCommentToState', newComment);
+  },
+  resetComments({ commit }) {
+    console.log('reset')
+    commit('resetCommentsInState');
   }
 }
 

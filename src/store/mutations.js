@@ -1,10 +1,10 @@
 const mutations = {
   saveCommentsToState: (state, comments) => {
     if(state.comments.length === 0) {
-      state.comments = comments
+      state.comments = comments // if the state is empty then set array as new state
     }
     else {
-      state.comments.push(...comments)
+      state.comments.push(...comments) /// if not, append - will have duplicates
     }
   },
 
@@ -12,7 +12,7 @@ const mutations = {
 
   resetCommentsInState: (state) => {
     state.comments = []
-    localStorage.clear();
+    //localStorage.clear(); 
   },
 }
 

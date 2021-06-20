@@ -29,6 +29,7 @@
     name: 'Home',
     data() {
       return {
+        // these cannot be like, 'name: String' cos that will show junk text in the form inputs when empty
         name: '',
         email: '',
         body: ''
@@ -38,28 +39,28 @@
       //...mapActions(["fetchComments"]),
       fetchBtnClick() {
         console.log('fetch!!!!')
-        this.$store.dispatch('fetchAllComments')
+        this.$store.dispatch('fetchAllComments')  // fetch all comments from json placeholder and save into state
       },
       resetBtnClick() {
         console.log('reset!!!!')
-        this.$store.dispatch('resetComments')
+        this.$store.dispatch('resetComments') // delete all comments from state
       },
       submitForm() {
-        console.log('submit!!!')
-        const newComment = {
+        console.log('submit!!!')  
+        const newComment = {  
           name: this.name,
           email: this.email,
           body: this.body
         }
         console.log(newComment);
-        this.$store.dispatch('addAComment', newComment)
+        this.$store.dispatch('addAComment', newComment) // append a new comment to state
       }
     },
     computed: {
       //mapGetters(["allComments"]),
       allComments() {
         // return this.$store.state.comments;
-        return this.$store.getters.reverseItems;
+        return this.$store.getters.reverseItems;  // for displaying the list o comments - reversed so newest at top
       }
     },
     created() {}

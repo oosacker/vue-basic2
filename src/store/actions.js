@@ -6,6 +6,10 @@ const actions = {
     const response = await axios.get('https://jsonplaceholder.typicode.com/comments');
     commit('saveCommentsToState', response.data);
   },
+  addAComment({ commit }, newComment) {
+    console.log('add')
+    commit('addCommentToState', newComment);
+  }
 }
 
 export default actions;
